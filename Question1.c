@@ -43,6 +43,8 @@ inline void memtest(int *bytes) {
 
 int main(int ac, char **av) {
     printf("------------------------------\n");
-    memtest(64);
+    int *bytes;
+    *bytes = 64;
+    memtest(bytes);
     return 0;
 }
