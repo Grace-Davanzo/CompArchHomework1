@@ -21,9 +21,9 @@ inline void memtest(int *bytes) {
     char *lineBuffer = (char*) malloc(64);
     char *lineBufferCopy = (char*) malloc(64);
     char *filename;
-    sprintf(filename, "memtest%dB.csv", bytes);
+    sprintf(filename, "memtest%dB.csv", *bytes);
     FILE *fp;
-    fp = fopen(filename, 'w');
+    fp = fopen(filename, "w");
     for (int i = 0; i < 64; i++) {
         lineBuffer[i] = '1';
     }
@@ -35,10 +35,10 @@ inline void memtest(int *bytes) {
         clflush(lineBuffer);
         clflush(lineBufferCopy);
         clock = clock + (end - start);
-        printf("%llu ticks to copy 64B\n", (end - start));
-        fprintf(fp, "%llu\n", (end - start));
+        printf("%lu ticks to copy 64B\n", (end - start));
+        fprintf(fp, "%lu\n", (end - start));
     }
-    printf("took %llu ticks total \n", clock);
+    printf("took %lu ticks total \n", clock);
 }
 
 int main(int ac, char **av) {
