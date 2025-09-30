@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 #define REPEAT 1000000
-inline void clflush(volatile void *p) {
+
+static inline void clflush(volatile void *p) {
     asm volatile ("clflush(%0)" :: "r"(p));
 }
 
-inline uint64_t rdtsc() {
+static inline uint64_t rdtsc() {
     unsigned long a, d;
     asm volatile ("rdtsc" : "=a" (a), "=d" (d));
     return a | ((uint64_t)d << 32);
