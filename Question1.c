@@ -5,7 +5,7 @@
 #define REPEAT 1000000
 
 static inline void clflush(volatile void *p) {
-    asm volatile ("clflush(%0)" :: "r"(p));
+    asm volatile ("clflush %0" :: "m"(*(volatile char*)p) : "memory");
 }
 
 static inline uint64_t rdtsc() {
