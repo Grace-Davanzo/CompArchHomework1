@@ -47,8 +47,7 @@ void memtest(int *bytes) {
 
 int main(int ac, char **av) {
     printf("------------------------------\n");
-    int *bytes;
-    *bytes = 64;
-    memtest(bytes);
+    int bytes = 64;
+    memtest(&bytes);
     return 0;
 }
