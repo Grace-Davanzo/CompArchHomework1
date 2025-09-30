@@ -47,7 +47,11 @@ void memtest(int *bytes) {
 
 int main(int ac, char **av) {
     printf("------------------------------\n");
-    int bytes = 64;
-    memtest(&bytes);
+    int byte_counts[] = {64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 1048576,2097152};
+    int i;
+    for (i=0;i<sizeof(byte_counts)/sizeof(byte_counts[0]);i++) {
+        memtest(&byte_counts[i]);
+    }
+    
     return 0;
 }
