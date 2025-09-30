@@ -16,11 +16,11 @@ inline uint64_t rdtsc() {
 char lineBuffer[64];
 long int rep;
 
-inline void memtest(int *bytes) {
+void memtest(int *bytes) {
     uint64_t start, end, clock;
     char *lineBuffer = (char*) malloc(64);
     char *lineBufferCopy = (char*) malloc(64);
-    char *filename;
+    char filename[100];
     sprintf(filename, "memtest%dB.csv", *bytes);
     FILE *fp;
     fp = fopen(filename, "w");
@@ -39,6 +39,9 @@ inline void memtest(int *bytes) {
         fprintf(fp, "%lu\n", (end - start));
     }
     printf("took %lu ticks total \n", clock);
+    fclose(fp);
+    free(lineBuffer);
+    free(lineBufferCopy);
 }
 
 int main(int ac, char **av) {
