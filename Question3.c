@@ -43,7 +43,7 @@ void memtest(int *bytes) {
         clflush(lineBuffer);
         clflush(lineBufferCopy);
         clock = clock + (second_copy - first_start);
-
+        
         printf("%lu ticks for first copy of %iB\n", (first_copy - first_start), b);
         printf("%lu ticks for second copy of %iB\n", (second_copy - second_start), b);
         fprintf(fp, "%lu,%lu\n", (first_copy - first_start), (second_copy - second_start));
