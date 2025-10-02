@@ -34,7 +34,12 @@ void memtest() {
         first_start = rdtsc();
         memcpy(lineBufferCopy, lineBuffer, 64);
         first_copy = rdtsc();
+        clflush(lineBuffer);
         clflush(lineBufferCopy);
+
+        for (int i = 0; i < 64; i++) {
+            lineBuffer[i] = '1';
+        }
 
         second_start = rdtsc();
         memcpy(lineBufferCopy, lineBuffer, 64);
